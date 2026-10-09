@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>California Housing Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+
+            <div class="icon">
+                🏠
+            </div>
+
+            <div>
+                <h1>California Housing Predictor</h1>
+                <p>Machine Learning Based House Value Prediction</p>
+            </div>
+
+        </div>
+
+
+        <!-- Main Card -->
+        <div class="card">
+
+            <div class="card-title">
+                <h2>Enter Property Details</h2>
+                <p>Provide the information below to estimate the house value.</p>
+            </div>
+
+
+            <form action="/predict" method="POST">
+
+                <div class="form-grid">
+
+                    {% for column in columns %}
+
+                    <div class="input-group">
+
+                        <label for="{{ column }}">
+                            {{ column }}
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            id="{{ column }}"
+                            name="{{ column }}"
+                            placeholder="Enter {{ column }}"
+                            required
+                        >
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <button type="submit">
+                    🔮 Predict House Value
+                </button>
+
+            </form>
+
+
+            {% if prediction is defined %}
+
+            <div class="result">
+
+                <div class="result-icon">
+                    🏡
+                </div>
+
+                <div>
+                    <p>Predicted House Value</p>
+
+                    <h2>
+                        ${{ "%.2f"|format(prediction * 100000) }}
+                    </h2>
+
+                    <span>
+                        Estimated median house value
+                    </span>
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Footer -->
+
+        <div class="footer">
+            <p>
+                Powered by Python • Flask • Scikit-learn • Machine Learning
+            </p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
