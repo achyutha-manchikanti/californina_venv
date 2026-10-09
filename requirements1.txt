@@ -3,3 +3,5 @@ joblib==1.6.0
 scikit-learn==1.9.1
 numpy==2.5.1
 pandas
+uvicorn
+fastapi
