@@ -5,3 +5,4 @@ numpy==2.5.1
 pandas
 uvicorn
 fastapi
+gunicorn==26.2.0
